@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
     def test_requisicao(self):
         self.assertEqual(self.result.status_code, 200)
     def test_conteudo(self):
-        self.assertEqual(self.result.data.decode('utf-8'), "Hello World!")
+        self.assertEqual(self.result.data.decode('utf-8'), "Laboratório Pipeline DevOps")
 if __name__ == "__main__":
         unittest.main(verbosity=2)
 
