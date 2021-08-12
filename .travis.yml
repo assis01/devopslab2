@@ -1,3 +1,6 @@
+# Linux
+os: linux
+dist: xenial
 language: python
 python:
   - "3.7.9"
@@ -13,5 +16,6 @@ deploy:
   api_key: $HEROKU_API_KEY
   edge: true 
   app: devops2-leonardodeassis
+  strategy: api
   on:
     branch: master
