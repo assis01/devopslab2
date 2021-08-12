@@ -6,7 +6,8 @@ install:
 
 script:
   - python -m unittest -v test
-# Definir o Deploy no Heroku
+  - echo "passei por aqui"
+#   Definir o Deploy no Heroku
 deploy:
   provider: heroku
   api_key: $HEROKU_API_KEY
