@@ -29,9 +29,8 @@ jobs:
       - stage: PROD Deploy
         script: skip 
         deploy:
-          <<: *heroku
           provider: gae
-          keyfile: ~/lab-devops01-64cb773ae3dc.json
+          keyfile: lab-devops01-64cb773ae3dc.json
           project: lab-devops01
 
       - stage: Prod Test
