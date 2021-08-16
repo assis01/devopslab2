@@ -11,9 +11,9 @@ jobs:
       - stage: build
         script: python -m unittest -v test || travis_terminate 1;
  
-      - stage: deploy
-        name: STAGE Deploy
-        provider: heroku
+      - stage: STAGE Deploy
+        deploy: &heroku
+          provider: heroku
         api_key: $HEROKU_API_KEY
         edge: true 
         app: devops2-leonardodeassis
@@ -21,8 +21,7 @@ jobs:
         on:
           branch: master 
 
-      - stage: deploy
-        name:  PROD Deploy
+      - stage: PROD Deploy
         provider: gae
         keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
         project: lab-devops01
