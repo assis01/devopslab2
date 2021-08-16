@@ -3,7 +3,8 @@ dist: xenial
 language: python
 python:
   - "3.7.9"
-install: pip install flask
+install:
+  - pip install flask
 
 jobs:
     include:      
@@ -11,6 +12,7 @@ jobs:
         script: python -m unittest -v test || travis_terminate 1;
  
       - stage: STAGE Deploy
+        script: skip
         deploy: &heroku 
           provider: heroku
           api_key: $HEROKU_API_KEY
@@ -19,7 +21,7 @@ jobs:
           strategy: api
   
       - stage: PROD Deploy
-          <<: *heroku
+        <<: *heroku
           deploy: &gae
             provider: gae
             keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
