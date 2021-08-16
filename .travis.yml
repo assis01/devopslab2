@@ -10,22 +10,17 @@ install:
 jobs:
   includes:
     - stage: build
-      script: "python -m unittest -v test || travis_terminate 1;"
+      script: python -m unittest -v test || travis_terminate 1;
     - stage: STG-Deploy
       provider: heroku
       api_key: $HEROKU_API_KEY
       edge: true 
       app: devops2-leonardodeassis
-      strategy: api
-      on:
-        branch: master
-   
+      strategy: api 
     - stage: PROD-Deploy
       provider: gae
       keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
       project: lab-devops01
-      on:
-        branch: master
 before_install:      
 - openssl aes-256-cbc -K $encrypted_272e41cf8212_key -iv $encrypted_272e41cf8212_iv
   -in lab-devops01-64cb773ae3dc.json.enc -out ~/lab-devops01-64cb773ae3dc.json -d
