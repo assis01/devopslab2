@@ -7,12 +7,18 @@ python:
 before_install:
         - openssl aes-256-cbc -K $encrypted_272e41cf8212_key -iv $encrypted_272e41cf8212_iv
             -in lab-devops01-64cb773ae3dc.json.enc -out lab-devops01-64cb773ae3dc.json -d
+addons:
+  sonarcloud:
+    organization: leoanrdodeassis
+    token: ${SONAR_TOKEN}
 jobs:
     include:      
       - stage: build
         install:
           - pip install flask
-        script: python -m unittest -v test || travis_terminate 1;
+        script: 
+         - python -m unittest -v test || travis_terminate 1;
+         - sonar-scanner || travis_terminate 1;
  
       - stage: STAGE Deploy
         script: skip
@@ -36,3 +42,4 @@ jobs:
       - stage: Prod Test
         script: curl https://lab-devops01.uc.r.appspot.com/
 
+        
