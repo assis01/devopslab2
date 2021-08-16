@@ -20,8 +20,10 @@ jobs:
           app: devops2-leonardodeassis
           strategy: api
   
-      - stage: Pscript: skipROD Deploy
+      - stage: PROD Deploy
         script: skip 
+        deploy:
+          <<: *heroku
         provider: gae
         keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
         project: lab-devops01
