@@ -25,9 +25,10 @@ jobs:
 
       - stage: PROD Deploy
         script: skip 
-        provider: gae
-        keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
-        project: lab-devops01
+        deploy:
+          <<: *heroku
+          provider: gae
+          project: lab-devops01
 
       - stage: Prod Test
         script: curl https://lab-devops01.uc.r.appspot.com/
