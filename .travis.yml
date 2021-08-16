@@ -6,23 +6,28 @@ python:
 install:
   - pip install flask
 
-stages:    
-  - name: build
-    script: python -m unittest -v test || travis_terminate 1;
-  - name: STG-Deploy
-    provider: heroku
-    api_key: $HEROKU_API_KEY
-    edge: true 
-    app: devops2-leonardodeassis
-    strategy: api
-    on:
-      branch: master 
-  - name: PROD-Deploy
-    provider: gae
-    keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
-    project: lab-devops01
-    on:
-      branch: master
+jobs:
+    include:      
+      - stage: build
+        script: python -m unittest -v test || travis_terminate 1;
+ 
+      - stage: deploy
+        name: STAGE Deploy
+        provider: heroku
+        api_key: $HEROKU_API_KEY
+        edge: true 
+        app: devops2-leonardodeassis
+        strategy: api
+        on:
+          branch: master 
+
+      - stage: deploy
+        name:  PROD Deploy
+        provider: gae
+        keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
+        project: lab-devops01
+        on:
+          branch: master
 before_install:      
 - openssl aes-256-cbc -K $encrypted_272e41cf8212_key -iv $encrypted_272e41cf8212_iv
   -in lab-devops01-64cb773ae3dc.json.enc -out ~/lab-devops01-64cb773ae3dc.json -d
