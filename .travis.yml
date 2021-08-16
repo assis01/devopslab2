@@ -10,8 +10,7 @@ install:
 jobs:
   includes:
     - stage: build
-      script:
-    - python -m unittest -v test || travis_terminate 1;
+      script: python -m unittest -v test || travis_terminate 1;
     - stage: STG-Deploy
       provider: heroku
       api_key: $HEROKU_API_KEY
@@ -20,6 +19,8 @@ jobs:
       strategy: api
       on:
         branch: master
+    - stage: STG-TEST
+      script: curl -X GET "https://devops2-leonardodeassis.herokuapp.com"    
     - stage: PROD-Deploy
       provider: gae
       keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
