@@ -10,6 +10,7 @@ script:
   - python -m unittest -v test || travis_terminate 1;
 deploy:
   - provider: heroku
+  - stage: STG Deploy
     api_key: $HEROKU_API_KEY
     edge: true 
     app: devops2-leonardodeassis
