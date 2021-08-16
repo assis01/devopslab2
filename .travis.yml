@@ -8,16 +8,18 @@ install:
   - pip install flask
 script:
   - python -m unittest -v test || travis_terminate 1;
-deploy:
-  - provider: heroku
-  - stage: STG Deploy
+stages:
+  - name: STG-Deploy
+    provider: heroku
+
     api_key: $HEROKU_API_KEY
     edge: true 
     app: devops2-leonardodeassis
     strategy: api
     on:
       branch: master
-  - provider: gae
+  - name: PROD-Deploy
+    provider: gae
     keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
     project: lab-devops01
     on:
