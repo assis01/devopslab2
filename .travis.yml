@@ -1,5 +1,3 @@
-
-  
 # Linux
 os: linux
 dist: xenial
@@ -26,4 +24,5 @@ deploy:
 before_install:
   - openssl aes-256-cbc -K $encrypted_272e41cf8212_key -iv $encrypted_272e41cf8212_iv
     -in lab-devops01-64cb773ae3dc.json.enc -out ~\/lab-devops01-64cb773ae3dc.json -d
+
 
