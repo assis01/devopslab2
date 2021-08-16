@@ -29,7 +29,7 @@ jobs:
           <<: *heroku
           provider: gae
           project: lab-devops01
-
+          keyfile: lab-devops01-64cb773ae3dc.json.enc
       - stage: Prod Test
         script: curl https://lab-devops01.uc.r.appspot.com/
 before_install:      
