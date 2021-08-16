@@ -21,11 +21,10 @@ jobs:
           strategy: api
   
       - stage: PROD Deploy
-        <<: *heroku
-          deploy: &gae
-            provider: gae
-            keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
-            project: lab-devops01
+        deploy: &gae
+          provider: gae
+          keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
+          project: lab-devops01
 
 before_install:      
 - openssl aes-256-cbc -K $encrypted_272e41cf8212_key -iv $encrypted_272e41cf8212_iv
