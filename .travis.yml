@@ -19,15 +19,18 @@ jobs:
           edge: true 
           app: devops2-leonardodeassis
           strategy: api
-  
+ 
+      - stage: STAGE Test
+        script: curl https://devops2-leonardodeassis.herokuapp.com
+
       - stage: PROD Deploy
         script: skip 
-        deploy:
-          <<: *heroku
         provider: gae
         keyfile: /home/vagrant/lab-devops01-64cb773ae3dc.json
         project: lab-devops01
 
+      - stage: Prod Test
+        script: curl https://lab-devops01.uc.r.appspot.com/
 before_install:      
 - openssl aes-256-cbc -K $encrypted_272e41cf8212_key -iv $encrypted_272e41cf8212_iv
   -in lab-devops01-64cb773ae3dc.json.enc -out ~/lab-devops01-64cb773ae3dc.json -d
