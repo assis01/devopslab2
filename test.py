@@ -4,7 +4,7 @@ import unittest
 class Test(unittest.TestCase):
    def setUp(self):
        self.app = app.test_client()
-
+       self.result = self.app.get('/')
    def test_requisicao(self):
        self.assertEqual(self.result.status_code, 200)
 
