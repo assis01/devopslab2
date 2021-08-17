@@ -17,10 +17,9 @@ jobs:
         install:
           - pip install flask flask-wtf coverage 
         script: 
-         - sonar-scanner || travis_terminate 1;
          - coverage xml app.py || travis_terminate 1;
          - coverage report app.py || travis_terminate 1;
-         
+         - sonar-scanner || travis_terminate 1;        
       - stage: STAGE Deploy
         script: skip
         deploy: &heroku 
