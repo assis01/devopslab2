@@ -1,4 +1,0 @@
-
-flask>=1.0.0                                                                                                                                                                                             
-gunicorn
-flask-wtf
